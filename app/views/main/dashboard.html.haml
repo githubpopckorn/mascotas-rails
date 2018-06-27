@@ -1,0 +1,51 @@
+%h1.text-center
+  Bienvenido
+  = current_user.email
+
+%hr
+  - if current_user.permissions == 1
+    %h3 Listado de todas las mascotas
+
+    = link_to 'Ingresar mascota', new_pet_path, class: "btn btn-raised btn-lg"
+  - else
+    %h3 Listado de mascotas libres
+
+%hr
+
+%table.table.table-bordered.table-hover
+  %thead.thead-dark
+    %tr
+      %th Nombre
+      %th Precio
+      %th Tipo de mascota
+      %th Sexo
+      %th Observaciones
+      %th Estado
+      %th
+      - if current_user.permissions == 1
+        %th
+        %th
+      - else
+        %th
+        %th
+
+  %tbody
+    - @pets.each do |pet|
+      %tr
+        %td= pet.name
+        %td= pet.price
+        %td= pet.tipo
+        %td= pet.sexo
+        %td= pet.observaciones
+        %td= pet.estado
+        %td= link_to 'Ver', pet, class: "btn btn-raised btn-primary"
+        - if current_user.permissions == 1
+          %td= link_to 'Editar', edit_pet_path(pet), class: "btn btn-raised btn-info"
+          - if pet.estado != "adoptada"
+            %td= link_to 'Eliminar', pet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-raised btn-warning"
+        - else
+          %td= link_to "Ingresar revision", new_state_path(id: pet.id), class: "btn btn-raised btn-info"
+          %td= link_to "Adoptar", new_adoption_path(id: pet.id), class: "btn btn-raised btn-primary"
+
+
+%br

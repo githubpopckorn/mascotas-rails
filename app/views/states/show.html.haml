@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Pet:
+  = @state.pet
+%p
+  %b Codigo:
+  = @state.codigo
+%p
+  %b Estado:
+  = @state.estado
+
+= link_to 'Edit', edit_state_path(@state)
+\|
+= link_to 'Back', states_path

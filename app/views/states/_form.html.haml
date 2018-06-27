@@ -1,0 +1,20 @@
+= form_for @state do |f|
+  - if @state.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@state.errors.count, "error")} prohibited this state from being saved:"
+      %ul
+        - @state.errors.full_messages.each do |message|
+          %li= message
+
+  .form-group
+    = f.label :pet
+    = f.collection_select :pet_id, @pets,:id,:name, {:prompt => "Selecciona una mascota"}, {:class=>'form-control'}
+  .form-group
+    = f.label :codigo
+    = f.text_field :codigo, class: "form-control"
+  .form-group
+    = f.label :estado
+    = f.text_field :estado, class: "form-control"
+
+  .actions
+    = f.submit 'Guardar', class: "btn btn-info"

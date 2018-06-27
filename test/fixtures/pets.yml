@@ -1,0 +1,36 @@
+# == Schema Information
+#
+# Table name: pets
+#
+#  id                 :integer          not null, primary key
+#  name               :string
+#  price              :decimal(15, 10)
+#  tipo               :string
+#  sexo               :string
+#  observaciones      :text
+#  estado             :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  image_file_name    :string
+#  image_content_type :string
+#  image_file_size    :integer
+#  image_updated_at   :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  price: 
+  tipo: MyString
+  sexo: MyString
+  observaciones: MyText
+  estado: MyString
+
+two:
+  name: MyString
+  price: 
+  tipo: MyString
+  sexo: MyString
+  observaciones: MyText
+  estado: MyString

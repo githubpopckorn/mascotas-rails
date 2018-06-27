@@ -1,0 +1,29 @@
+= form_for @pet do |f|
+  - if @pet.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@pet.errors.count, "error")} prohibited this pet from being saved:"
+      %ul
+        - @pet.errors.full_messages.each do |message|
+          %li= message
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :price
+    = f.text_field :price, class: "form-control"
+  .form-group
+    = f.label :tipo
+    = f.text_field :tipo, class: "form-control"
+  .form-group
+    = f.label :sexo
+    = f.text_field :sexo, class: "form-control"
+  .form-group
+    = f.label :observaciones
+    = f.text_area :observaciones, class: "form-control"
+
+  .form-group
+    = f.file_field :image
+
+  .form-group
+    = f.submit 'Guardar', class: "btn btn-info"

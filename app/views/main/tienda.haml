@@ -1,0 +1,9 @@
+.top-space
+  %h2 Visitamos en nuestra tienda
+  %hr
+
+  .row
+    .col-sm-2
+    .col-sm-8
+      .card{style:"width: 40rem;"}
+        = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@latitude}%2C#{@longitude}&key=AIzaSyB1s1zvu6kR7T1XgVRF_0EBrIgzrbz5Wq0"

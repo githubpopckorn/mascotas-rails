@@ -1,0 +1,22 @@
+= form_for @adoption do |f|
+  - if @adoption.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@adoption.errors.count, "error")} prohibited this adoption from being saved:"
+      %ul
+        - @adoption.errors.full_messages.each do |message|
+          %li= message
+
+  .form-group
+    = f.label :pet
+    = f.collection_select :pet_id, Pet.libres,:id,:name, {:prompt => "Selecciona una mascota"}, {:class=>'form-control'}
+  .form-group
+    = f.label :latitude
+    = f.text_field :latitude, class: "form-control"
+  .form-group
+    = f.label :longitude
+    = f.text_field :longitude, class: "form-control"
+  .form-group
+    = f.label :address
+    = f.text_field :address, class: "form-control"
+  .form-group
+    = f.submit 'Guardar', class: "btn btn-info"

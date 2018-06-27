@@ -1,0 +1,29 @@
+%h1
+  Revisiones de la mascota
+  = @pet.name
+
+= link_to 'Regresar', root_path, class: "btn btn-raised btn-lg"
+
+%hr
+
+%table.table.table-bordered.table-hover
+  %thead.thead-dark
+    %tr
+      %th Mascota
+      %th Codigo
+      %th Estado
+      %th
+      %th
+      %th
+
+  %tbody
+    - @revisiones.each do |state|
+      %tr
+        %td= state.pet.name
+        %td= state.codigo
+        %td= state.estado
+        %td= link_to 'Show', state, class: "btn btn-raised btn-primary"
+        %td= link_to 'Edit', edit_state_path(state), class: "btn btn-raised btn-info"
+        %td= link_to 'Destroy', state, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-raised btn-warning"
+
+%br

@@ -1,0 +1,34 @@
+%h1.text-center
+  Bienvenido
+  = current_user.email
+
+%hr
+  %h3 Listado de las mascotas adoptadas
+
+%hr
+
+%table.table.table-bordered.table-hover
+  %thead.thead-dark
+    %tr
+      %th Nombre
+      %th Precio
+      %th Tipo de mascota
+      %th Sexo
+      %th Observaciones
+      %th Estado
+      %th
+
+
+
+  %tbody
+    - @pets.each do |pet|
+      %tr
+        %td= pet.name
+        %td= pet.price
+        %td= pet.tipo
+        %td= pet.sexo
+        %td= pet.observaciones
+        %td= pet.estado
+        %td= link_to 'Ver', pet, class: "btn btn-raised btn-primary"
+
+

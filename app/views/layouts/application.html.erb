@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mascotas</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <ul class="nav nav-tabs navbar-expand-lg navbar-light bg-danger" style="margin-bottom: 1em;">
+
+      <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: "nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Adopciones", adoptions_path, class: "nav-link"%>
+          </li>
+          <% if current_user.permissions == 2 %>
+              <li class="nav-item">
+                <%= link_to "Visitas", states_path, class: "nav-link"%>
+              </li>
+          <% else %>
+              <li class="nav-item">
+                <%= link_to "Gestión de Visitas", states_path, class: "nav-link"%>
+              </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to "Mascotas adoptadas", pets_path, class: "nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Salir", destroy_user_session_path, class: "nav-link", method: :delete %>
+          </li>
+      <% else %>
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Mapa", show_tienda_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Iniciar Sesion", new_user_session_path, class: "nav-link" %>
+          </li>
+
+          <%= form_tag search_pets_path, method: :get, class: "form-inline my-2 my-lg-0", role: 'search' do %>
+            <%= text_field_tag :search, params[:search], class: "form-control mr-sm-2"%>
+            <%= submit_tag "Buscar", name: nil, class:"btn btn-outline-primary my-2 my-sm-0" %>
+          <% end %>
+
+      <% end %>
+
+    </ul>
+
+    <div style="<%= 'display: none;' if notice.nil? && alert.nil? %>" class="alert alert-primary" role="alert"><%= notice %><%= alert %></div>
+    <div class="container">
+      <div class="">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>

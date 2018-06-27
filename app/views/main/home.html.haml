@@ -1,0 +1,26 @@
+%h1 Mira nuestro catálogo de mascotas
+%hr
+.row
+  - @pets.each do |pet|
+
+    .col-sm-12.col-md-4
+      .card{style:"width: 20rem; margin-top: 1em;"}
+        = image_tag pet.image.url(:medium), class: "card-img-top"
+
+        .card-body
+          .card-title
+            %h5= pet.name
+          .card-textof
+            %p
+              %b Price:
+              = pet.price
+            %p
+              %b Tipo:
+              = pet.tipo
+            %p
+              %b Sexo:
+              = pet.sexo
+            %p
+              %b Observaciones:
+              = pet.observaciones
+
